@@ -1,0 +1,14 @@
+First time:-
+git init
+git add [item or --all]
+git status
+git commit -m "[commit's description]"
+git remote add origin [https://github url]
+git push -u origin master
+
+Next times:-
+git status
+git add [item or --all]
+git status
+git commit -m "[commit's description]"
+git push
