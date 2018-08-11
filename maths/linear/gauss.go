@@ -2,6 +2,8 @@ package linear
 
 import "math"
 
+// Based on interpreting the C version, assuming fabs = math.Abs
+// A "void" in C is represented by nothing in go.
 func Normal(a [100][100]float64, b [100]float64, m int32) {
 	var i, j int32
 	var big float64
