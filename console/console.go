@@ -1,7 +1,14 @@
 package main
 
+import (
+	"github.com/BenthamEJ/goLaby/maths"
+	"github.com/BenthamEJ/goLaby/physics/cosmic"
+)
+
 func main() {
-	print("Checking console works this way. Wait, why is this text red in the output?\n" +
-		"If it was wrong, it should not output this text at all.\n" +
-		"Maybe it's just something about GoLand.\n")
+	print("Console works without being called main.\n\n")
+
+	println("Question: What is the Hawking Radiation Temperature of a 1 solar mass black hole?")
+	answer := cosmic.TempH(1.989 * maths.TenToThe(30))
+	println("Answer:", answer)
 }
