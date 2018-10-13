@@ -1,0 +1,34 @@
+In main or console:-
+
+
+
+Adding 12int64 arrays:-
+
+	array1 := [12]int64{1,999999999999999999,0,0,5,999999999999999999,0,0,0,0,0,999999999999999999}
+	array2 := array1
+	answer := twelveInt64s.Add(array1,array2)
+	for i:=0; i<12; i++ {
+		println(answer[i])
+	}
+
+
+
+Carry test
+
+	println(int64(math.MaxInt64))
+	println(int64(math.MinInt64))
+
+	var quintillion int64 = 1000000000000000000
+
+	var a2 int64= -100000000000000000
+	var b2 int64 = -218490261709
+	carry := (a2 + b2) / quintillion
+	println(carry)
+
+
+
+Failed attempt with float64, precision is too low
+
+	a := 1-math.Pow(10,-75.269482797204661802199)
+	b := (70.9*math.Pow(10,30))/(5.39*math.Pow(10,-44))
+	println(math.Pow(a,b))
