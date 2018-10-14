@@ -1,4 +1,4 @@
-package twelveInt64s
+package precision
 
 func Add(a [12]int64, b [12]int64) []int64 {
 	answer := make([]int64, 12)

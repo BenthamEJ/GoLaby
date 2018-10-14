@@ -27,7 +27,31 @@ Carry test
 
 
 
-Failed attempt with float64, precision is too low
+String to big float
+
+	result := big.NewFloat(0).SetPrec(200)
+	result.Parse("1315398886827458256029684601113172541743970315398886827458256029684601113172.5417439703153988868274582560296846011131725417439703153988868274582560296846011131725417439703153988868274582560296846011132", 10)
+
+	fmt.Println(result)
+
+
+
+AlTree's precision example
+
+	var result = big.NewFloat(0).SetPrec(2000)
+	var tiny = big.NewFloat(0).SetPrec(2000)
+	var ten = big.NewFloat(10).SetPrec(2000)
+	var one = big.NewFloat(1).SetPrec(2000)
+	for i := 0; i < 75; i++ {
+		var minusIFloat = big.NewFloat(float64(-i)).SetPrec(2000)
+		tiny = bigfloat.Pow(ten, minusIFloat)
+		result.Sub(one, tiny)
+		fmt.Printf("%d : %.100f...\n", i, result)
+	}
+
+
+
+Old Failed attempt with float64, precision is too low
 
 	a := 1-math.Pow(10,-75.269482797204661802199)
 	b := (70.9*math.Pow(10,30))/(5.39*math.Pow(10,-44))
@@ -35,7 +59,7 @@ Failed attempt with float64, precision is too low
 
 
 
-Failed attempt with math.big, showing that Go's current code is rubbish
+Old Failed attempt with math.big
 
 	one := big.NewFloat(float64(1))
 	difference := big.NewFloat(float64(0))
