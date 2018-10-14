@@ -1,8 +1,11 @@
 package units
 
-import "github.com/BenthamEJ/goLaby/maths"
+import (
+	"github.com/BenthamEJ/goLaby/physics"
+	"math"
+)
 
 func PlanckTimeInSeconds() float64 {
-	base := 5.39
-	return base * maths.TenToThe(-44)
+	calc := math.Pow(physics.PlanckBar()*physics.BigG()/math.Pow(physics.LittleC(), 5), 0.5)
+	return calc
 }

@@ -1,8 +1,10 @@
-In main or console:-
+// In main or console:-
 
 
 
-Hawking Radiation:-
+
+
+// Hawking Radiation:-
 
 	println("Question: What is the Hawking Radiation Temperature of a 1 solar mass black hole?")
 	answer := cosmic.TempH(physics.SolarMass())

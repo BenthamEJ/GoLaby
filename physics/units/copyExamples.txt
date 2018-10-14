@@ -1,0 +1,31 @@
+// In main or console:-
+
+
+
+
+
+// long winded high precision planck time calculation (comes up same as float64 method)
+
+func PlanckTimeInSeconds() float64 {
+	planckBar := big.NewFloat(physics.PlanckBar()).SetPrec(2000)
+	bigG := big.NewFloat(physics.BigG()).SetPrec(2000)
+	numerator := big.NewFloat(0).SetPrec(2000)
+	numerator.Mul(planckBar,bigG)
+
+	five := big.NewInt(5)
+	denominatorInt := big.NewInt(int64(physics.LittleC()))
+	denominatorInt.Exp(denominatorInt, five, nil)
+	denominatorstring := denominatorInt.String()
+	denominator := big.NewFloat(0).SetPrec(2000)
+	denominator.Parse(denominatorstring, 10)
+
+	fraction := big.NewFloat(0).SetPrec(2000)
+	fraction.Quo(numerator,denominator)
+
+	result := big.NewFloat(0).SetPrec(2000)
+	result.Sqrt(fraction)
+
+	result2, acc := result.Float64()
+	fmt.Println(acc)
+	return result2
+}
