@@ -1,42 +1,25 @@
-In main or console:-
+// In main or console:-
 
 
 
-Adding 12int64 arrays:-
-
-	array1 := [12]int64{1,999999999999999999,0,0,5,999999999999999999,0,0,0,0,0,999999999999999999}
-	array2 := array1
-	answer := twelveInt64s.Add(array1,array2)
-	for i:=0; i<12; i++ {
-		println(answer[i])
-	}
 
 
+// How much Tellurium 128 is left after power planck times
+// where base = how much is left after 1 planck time,
+// power is half life in planck times, so result should be 0.5
 
-Carry test
+	power := big.NewFloat(0).SetPrec(2000)
+	power.Parse("1315398886827458256029684601113172541743970315398886827458256029684601113172.5417439703153988868274582560296846011131725417439703153988868274582560296846011131725417439703153988868274582560296846011132", 10)
 
-	println(int64(math.MaxInt64))
-	println(int64(math.MinInt64))
+	base := big.NewFloat(0).SetPrec(2000)
+	base.Parse("0.99999999999999999999999999999999999999999999999999999999999999999999999999947305172027953381978012960018905899831777916442852245138075243283929596298791676148796550620182473135778369690446616813289431",10)
 
-	var quintillion int64 = 1000000000000000000
-
-	var a2 int64= -100000000000000000
-	var b2 int64 = -218490261709
-	carry := (a2 + b2) / quintillion
-	println(carry)
+	answer := bigfloat.Pow(base, power)
+	fmt.Printf("answer : %.120f...\n", answer)
 
 
 
-String to big float
-
-	result := big.NewFloat(0).SetPrec(200)
-	result.Parse("1315398886827458256029684601113172541743970315398886827458256029684601113172.5417439703153988868274582560296846011131725417439703153988868274582560296846011131725417439703153988868274582560296846011132", 10)
-
-	fmt.Println(result)
-
-
-
-AlTree's precision example
+// AlTree's precision example
 
 	var result = big.NewFloat(0).SetPrec(2000)
 	var tiny = big.NewFloat(0).SetPrec(2000)
@@ -51,7 +34,77 @@ AlTree's precision example
 
 
 
-Old Failed attempt with float64, precision is too low
+// String to big float
+
+	result := big.NewFloat(0).SetPrec(200)
+	result.Parse("1315398886827458256029684601113172541743970315398886827458256029684601113172.5417439703153988868274582560296846011131725417439703153988868274582560296846011131725417439703153988868274582560296846011132", 10)
+
+	fmt.Println(result)
+
+
+
+
+
+// OLD STUFF
+
+
+
+
+
+// Adding 12int64 arrays:-
+
+	array1 := [12]int64{1,999999999999999999,0,0,5,999999999999999999,0,0,0,0,0,999999999999999999}
+	array2 := array1
+	answer := twelveInt64s.Add(array1,array2)
+	for i:=0; i<12; i++ {
+		println(answer[i])
+	}
+
+
+
+// Carry test
+
+	println(int64(math.MaxInt64))
+	println(int64(math.MinInt64))
+
+	var quintillion int64 = 1000000000000000000
+
+	var a2 int64= -100000000000000000
+	var b2 int64 = -218490261709
+	carry := (a2 + b2) / quintillion
+	println(carry)
+
+
+
+// Adding 12 int64s
+
+func Add(a [12]int64, b [12]int64) []int64 {
+	answer := make([]int64, 12)
+	carry := make([]int64, 12)
+	excess := make([]int64, 12)
+
+	var quintillion int64 = 1000000000000000000
+
+	for i := 11; i > 0; i-- {
+		carry[i] = (a[i] + b[i]) / quintillion
+		excess[i] = carry[i] * quintillion
+		answer[i] = answer[i] + a[i] + b[i] - excess[i]
+		answer[i-1] += carry[i]
+	}
+
+	if (answer[0] + a[0] + b[0]) < quintillion {
+		answer[0] = answer[0] + a[0] + b[0]
+	} else {
+		// result out of bounds
+	}
+
+	return answer
+}
+
+
+
+
+// Old Failed attempt with float64, precision is too low
 
 	a := 1-math.Pow(10,-75.269482797204661802199)
 	b := (70.9*math.Pow(10,30))/(5.39*math.Pow(10,-44))
@@ -59,7 +112,7 @@ Old Failed attempt with float64, precision is too low
 
 
 
-Old Failed attempt with math.big
+// Old Failed attempt with math.big
 
 	one := big.NewFloat(float64(1))
 	difference := big.NewFloat(float64(0))
