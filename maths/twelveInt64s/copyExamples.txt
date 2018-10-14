@@ -32,3 +32,24 @@ Failed attempt with float64, precision is too low
 	a := 1-math.Pow(10,-75.269482797204661802199)
 	b := (70.9*math.Pow(10,30))/(5.39*math.Pow(10,-44))
 	println(math.Pow(a,b))
+
+
+
+Failed attempt with math.big, showing that Go's current code is rubbish
+
+	one := big.NewFloat(float64(1))
+	difference := big.NewFloat(float64(0))
+	point1 := big.NewFloat(float64(0.1))
+
+
+	for i := 1; i < 100; i++ {
+		result := big.NewFloat(float64(1))
+		for j := i; j > 0;  j-- {
+			result.Mul(result, point1)
+		}
+
+		fmt.Printf("%d: %.100f...\n", i, result)
+
+		difference.Sub(one, result)
+		fmt.Printf("difference: %.100f...\n\n", difference)
+	}
