@@ -1,25 +1,25 @@
 package nuclear
 
 type particle struct {
-	Mass   float64
-	Charge float64
+	mass   float64
+	charge float64
 }
 
 type fundamentalParticle struct {
 	particle
-	Spin float64
+	spin float64
 }
 
 type nucleon struct {
 	particle
-	NucleonType string
-	Quarks      [3]quark
+	nucleonType string
+	quarks      [3]quark
 }
 
 type atom struct {
 	particle
-	AtomType string
-	Protons  int
-	Neutrons int
-	HalfLife float64
+	atomType string
+	protons  int
+	neutrons int
+	halfLife float64
 }

@@ -4,9 +4,9 @@ import "strings"
 
 type quark struct {
 	fundamentalParticle
-	Colour  string
-	Flavour string
-	Anti    bool
+	colour  string
+	flavour string
+	anti    bool
 }
 
 func (q quark) SetColour(c string) {
@@ -26,9 +26,9 @@ func (q quark) SetColour(c string) {
 	// Validation
 	if c == "red" || c == "green" || c == "blue" ||
 		c == "cyan" || c == "magenta" || c == "yellow" {
-		q.Colour = c
+		q.colour = c
 	} else {
-		q.Colour = ""
+		q.colour = ""
 	}
 }
 
@@ -59,14 +59,14 @@ func (q quark) SetFlavour(f string) {
 	if f == "top" || f == "bottom" ||
 		f == "charm" || f == "strange" ||
 		f == "down" || f == "up" {
-		q.Flavour = f
+		q.flavour = f
 	} else {
-		q.Flavour = ""
+		q.flavour = ""
 	}
 }
 
 func (q quark) SetAnti() {
-	if q.Colour == "cyan" || q.Colour == "magenta" || q.Colour == "yellow" {
-		q.Anti = true
+	if q.colour == "cyan" || q.colour == "magenta" || q.colour == "yellow" {
+		q.anti = true
 	}
 }
