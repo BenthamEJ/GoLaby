@@ -1,10 +1,26 @@
 package polyplus
 
-type polyCo struct {
-	coeffs []float64
-	symbol string
+import "math"
+
+// Single variable polynomial
+type Poly1 struct {
+	Coeffs []float64
+	Order  int
 }
 
+func (p Poly1) Initialise() {
+	p.Order = len(p.Coeffs) - 1
+}
+
+func (p Poly1) SolveAsFunction(input float64) float64 {
+	var answer float64
+	for i := 0; i <= p.Order; i++ {
+		answer += p.Coeffs[i] * math.Pow(input, float64(i))
+	}
+	return answer
+}
+
+// Factorial, Binomial
 func Factorial(input int64) int64 {
 	var output int64 = 1
 	if input == 0 {
